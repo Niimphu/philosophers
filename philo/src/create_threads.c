@@ -6,38 +6,48 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:15:02 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/07 15:51:51 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/10 20:40:27 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../dep/philo.h"
 
-t_input	*copy_data(t_input *input);
+t_philo	*create_philo_struct(t_main *data);
+void	free_philos(t_main *data);
 
-int	create_threads(t_input *input)
+int	create_threads(t_main *data)
 {
-	pthread_t	philo;
+	pthread_t	philo_thread;
 
-	while (input->philo_count > 0)
+	data->i = 1;
+	data->start_time = get_time_ms();
+	while (data->i <= data->philo_count)
 	{
-		pthread_create(&philo, NULL, (void *)philosophise, copy_data(input));
-		input->philo_count--;
+		data->philos[data->i - 1] = create_philo_struct(data);
+		pthread_create(&philo_thread, NULL, (void *)philosophise, (void *)data->philos[data->i - 1]);
+		data->i++;
 	}
-	usleep(50);
+	msleep(1000);
+	free_philos(data);
 	return (0);
 }
 
-t_input	*copy_data(t_input *input)
+t_philo	*create_philo_struct(t_main *data)
 {
-	t_input	*copy;
+	t_philo	*philo;
 
-	copy = malloc(sizeof(t_input *));
-	if (!copy)
-		return (NULL);
-	copy->philo_count = input->philo_count;
-	copy->die_time = input->die_time;
-	copy->eat_time = input->eat_time;
-	copy->sleep_time = input->sleep_time;
-	copy->max_meals = input->max_meals;
-	return (copy);
+	philo = malloc(sizeof(t_philo *));
+	philo->id = data->i;
+	philo->data = data;
+	return (philo);
+}
+
+void	free_philos(t_main *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->philo_count)
+		free(data->philos[i++]);
+	free(data->philos);
 }

@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/06 20:26:15 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/07 15:51:51 by yiwong           ###   ########.fr       */
+/*   Created: 2023/07/07 16:27:01 by yiwong            #+#    #+#             */
+/*   Updated: 2023/07/07 16:27:01 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../dep/philo.h"
 
-int	main(int argn, char *arguments[])
+int	get_time_ms(void)
 {
-	t_input	input;
+	struct timeval	time;
 
-	if (parse(argn, arguments, &input))
-		return (printf("Invalid number of arguments\n"));
-	create_threads(&input);
-	return (0);
+	gettimeofday(&time, NULL);
+	return (time.tv_usec / 1000);
+}
+
+int	get_elapsed_time(int start_time)
+{
+	int	time;
+
+	time = get_time_ms();
+	return (time - start_time);
+}
+
+void	msleep(int time_ms)
+{
+	usleep(time_ms * 1000);
 }

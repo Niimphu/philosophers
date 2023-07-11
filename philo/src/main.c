@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosphers.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 16:24:28 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/07 16:24:28 by yiwong           ###   ########.fr       */
+/*   Created: 2023/07/06 20:26:15 by yiwong            #+#    #+#             */
+/*   Updated: 2023/07/10 20:40:27 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../dep/philo.h"
 
-void	*philosophise(t_input *input)
+int	main(int argn, char *arguments[])
 {
-	struct timeval	time;
+	t_main	data;
 
-	if (!(input->philo_count % 2))
-		usleep(10);
-	gettimeofday(&time, NULL);
-	printf("Philo %i here at %i:)\n", input->philo_count, time.tv_usec);
-	printf("%i says: 'nice'\n", input->philo_count);
-	free(input);
-	return (NULL);
+	if (parse(argn, arguments, &data))
+		return (printf("Invalid number of arguments\n"));
+	data.start_time = get_time_ms();
+	create_threads(&data);
+	return (0);
 }
