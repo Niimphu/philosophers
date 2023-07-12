@@ -46,8 +46,14 @@ void	free_philos(t_main *data)
 {
 	int	i;
 
+	if (!data->philos)
+		return ;
 	i = 0;
 	while (i < data->philo_count)
-		free(data->philos[i++]);
+	{
+		free(data->philos[i]);
+		data->philos[i++] = NULL;
+	}
 	free(data->philos);
+	data->philos = NULL;
 }
