@@ -12,26 +12,26 @@
 
 #include "../dep/philo.h"
 
-int	create_struct(char **arguments, t_main *input);
+int	init_data(char **arguments, t_main *data);
 
 int	parse(int argn, char *arguments[], t_main *data)
 {
 	if (argn < 5 || argn > 6)
 		return (1);
-	create_struct(arguments, data);
+	init_data(arguments, data);
 	return (0);
 }
 
-int	create_struct(char *arguments[], t_main *input)
+int	init_data(char *arguments[], t_main *data)
 {
-	input->philo_count = ft_atoi(arguments[1]);
-	input->die_time = ft_atoi(arguments[2]);
-	input->eat_time = ft_atoi(arguments[3]);
-	input->sleep_time = ft_atoi(arguments[4]);
-	input->max_meals = -1;
-	input->philos = malloc(sizeof(t_philo *) * input->philo_count);
+	data->philo_count = ft_atoi(arguments[1]);
+	data->die_time = ft_atoi(arguments[2]);
+	data->eat_time = ft_atoi(arguments[3]);
+	data->sleep_time = ft_atoi(arguments[4]);
+	data->max_meals = -1;
+	data->philos = malloc(sizeof(t_philo *) * data->philo_count);
 	if (arguments[5])
-		input->max_meals = ft_atoi(arguments[5]);
+		data->max_meals = ft_atoi(arguments[5]);
 	return (0);
 }
 //
