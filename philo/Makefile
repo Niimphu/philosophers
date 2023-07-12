@@ -6,6 +6,7 @@ LIBS = -lpthread
 
 SRC = src/main.c \
 	src/parser.c \
+	src/init.c \
 	src/create_threads.c \
 	src/philosophers.c \
 	src/time.c \

@@ -31,15 +31,19 @@ typedef struct s_main{
 	int				max_meals;
 	int				start_time;
 	int				i;
-	t_philo	**philos;
+	t_philo			**philos;
+	pthread_mutex_t	*forks;
 }	t_main;
 
 typedef struct s_philo{
-	int	id;
+	int				id;
+	pthread_mutex_t	left_fork;
+	pthread_mutex_t	right_fork;
 	t_main	*data;
 }	t_philo;
 
 int			parse(int argn, char *arguments[], t_main *data);
+int			initialise_data(t_main *data);
 int			ft_atoi(char *string);
 int			create_threads(t_main *data);
 void		*philosophise(t_philo *philo);

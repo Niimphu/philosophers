@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/06 20:52:39 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/10 20:40:37 by yiwong           ###   ########.fr       */
+/*   Created: 2023/07/12 20:23:20 by yiwong            #+#    #+#             */
+/*   Updated: 2023/07/12 20:23:20 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../dep/philo.h"
 
-int	parse(int argn, char *arguments[], t_main *data)
+int	initialise_data(t_main *data)
 {
-	if (argn < 5 || argn > 6)
+	int	i;
+
+	data->philos = malloc(sizeof(t_philo *) * data->philo_count);
+	if (!data->philos)
 		return (1);
-	data->philo_count = ft_atoi(arguments[1]);
-	data->die_time = ft_atoi(arguments[2]);
-	data->eat_time = ft_atoi(arguments[3]);
-	data->sleep_time = ft_atoi(arguments[4]);
-	data->max_meals = -1;
-	if (arguments[5])
-		data->max_meals = ft_atoi(arguments[5]);
+	data->forks = malloc(sizeof(pthread_mutex_t *) * data->philo_count);
+	if (!data->forks)
+		return (1);
+	i = 0;
+	while (i < data->philo_count)
+		pthread_mutex_init(&data->forks[i++], NULL);
 	return (0);
 }

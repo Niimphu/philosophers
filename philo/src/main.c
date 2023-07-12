@@ -18,6 +18,7 @@ int	main(int argn, char *arguments[])
 
 	if (parse(argn, arguments, &data))
 		return (printf("Invalid number of arguments\n"));
+	initialise_data(&data);
 	data.start_time = get_time_ms();
 	create_threads(&data);
 	return (0);
