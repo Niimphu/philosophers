@@ -19,9 +19,9 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include <stdbool.h>
 
 typedef struct s_philo t_philo;
-
 
 typedef struct s_main{
 	int				philo_count;
@@ -39,6 +39,7 @@ typedef struct s_philo{
 	int				id;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
+	bool			is_dead;
 	t_main	*data;
 }	t_philo;
 
@@ -54,4 +55,5 @@ t_philo			*create_philo_struct(t_main *data);
 void			free_philos(t_main *data);
 pthread_mutex_t	*get_left_fork(t_philo *philo);
 pthread_mutex_t	*get_right_fork(t_philo *philo);
+
 #endif

@@ -23,6 +23,7 @@ t_philo	*create_philo_struct(t_main *data)
 	philo->data = data;
 	philo->left_fork = get_left_fork(philo);
 	philo->right_fork = get_right_fork(philo);
+	philo->is_dead = false;
 	return (philo);
 }
 
