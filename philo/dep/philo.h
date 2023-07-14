@@ -37,18 +37,21 @@ typedef struct s_main{
 
 typedef struct s_philo{
 	int				id;
-	pthread_mutex_t	left_fork;
-	pthread_mutex_t	right_fork;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
 	t_main	*data;
 }	t_philo;
 
-int			parse(int argn, char *arguments[], t_main *data);
-int			initialise_data(t_main *data);
-int			ft_atoi(char *string);
-int			create_threads(t_main *data);
-void		*philosophise(t_philo *philo);
-int			get_time_ms(void);
-int			get_elapsed_time(int start_time);
-void		msleep(int time_ms);
-
+int				parse(int argn, char *arguments[], t_main *data);
+int				initialise_data(t_main *data);
+int				ft_atoi(char *string);
+int				create_threads(t_main *data);
+void			*philosophise(t_philo *philo);
+int				get_time_ms(void);
+int				get_elapsed_time(int start_time);
+void			msleep(int time_ms);
+t_philo			*create_philo_struct(t_main *data);
+void			free_philos(t_main *data);
+pthread_mutex_t	*get_left_fork(t_philo *philo);
+pthread_mutex_t	*get_right_fork(t_philo *philo);
 #endif

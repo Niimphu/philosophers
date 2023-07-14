@@ -8,6 +8,7 @@ SRC = src/main.c \
 	src/parser.c \
 	src/init.c \
 	src/create_threads.c \
+	src/philo_ready.c \
 	src/philosophers.c \
 	src/time.c \
 	src/utils.c
