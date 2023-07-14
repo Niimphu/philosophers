@@ -5,7 +5,6 @@ CFLAGS = -Wall -Wextra -Werror
 LIBS = -lpthread
 
 SRC = src/main.c \
-	src/parser.c \
 	src/init.c \
 	src/create_threads.c \
 	src/philo_ready.c \
