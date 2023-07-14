@@ -21,7 +21,8 @@ int	create_threads(t_main *data)
 	while (data->i <= data->philo_count)
 	{
 		data->philos[data->i - 1] = create_philo_struct(data);
-		pthread_create(&philo_thread, NULL, (void *)philosophise, (void *)data->philos[data->i - 1]);
+		pthread_create(&philo_thread, NULL, (void *)philosophise,
+			(void *)data->philos[data->i - 1]);
 		data->i++;
 	}
 	msleep(1000);

@@ -21,7 +21,7 @@
 # include <pthread.h>
 # include <stdbool.h>
 
-typedef struct s_philo t_philo;
+typedef struct s_philo	t_philo;
 
 typedef struct s_main{
 	int				philo_count;
@@ -40,7 +40,7 @@ typedef struct s_philo{
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	bool			is_dead;
-	t_main	*data;
+	t_main			*data;
 }	t_philo;
 
 int				parse(int argn, char *arguments[], t_main *data);
