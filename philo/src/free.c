@@ -12,6 +12,16 @@
 
 #include "../dep/philo.h"
 
+void	free_all(t_main *data)
+{
+	if (data->forks)
+	{
+		free(data->forks);
+		data->forks = NULL;
+	}
+	free_philos(data);
+}
+
 void	free_philos(t_main *data)
 {
 	int	i;

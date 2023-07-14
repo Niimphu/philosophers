@@ -53,6 +53,7 @@ int				get_elapsed_time(int start_time);
 void			msleep(int time_ms);
 t_philo			*create_philo_struct(t_main *data);
 void			free_philos(t_main *data);
+void			free_all(t_main *data);
 pthread_mutex_t	*get_left_fork(t_philo *philo);
 pthread_mutex_t	*get_right_fork(t_philo *philo);
 

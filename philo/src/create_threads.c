@@ -26,6 +26,6 @@ int	create_threads(t_main *data)
 		data->i++;
 	}
 	msleep(1000);
-	free_philos(data);
+	free_all(data);
 	return (0);
 }
