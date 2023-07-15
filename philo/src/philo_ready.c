@@ -21,24 +21,19 @@ t_philo	*create_philo_struct(t_main *data)
 		return (NULL);
 	philo->id = data->i;
 	philo->data = data;
-	philo->left_fork = get_left_fork(philo);
-	philo->right_fork = get_right_fork(philo);
 	philo->is_dead = false;
 	return (philo);
 }
 
-pthread_mutex_t	*get_left_fork(t_philo *philo)
+pthread_mutex_t	*left_fork(t_philo *philo)
 {
-	if (philo->id == 1)
-		return (&philo->data->forks[philo->data->philo_count - 1]);
-	else
-		return (&philo->data->forks[philo->id - 1]);
+	return (&philo->data->forks[philo->id - 1]);
 }
 
-pthread_mutex_t	*get_right_fork(t_philo *philo)
+pthread_mutex_t	*right_fork(t_philo *philo)
 {
 	if (philo->id == philo->data->philo_count)
 		return (&philo->data->forks[0]);
 	else
-		return (&philo->data->forks[philo->id + 1]);
+		return (&philo->data->forks[philo->id]);
 }

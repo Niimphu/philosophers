@@ -21,6 +21,12 @@
 # include <pthread.h>
 # include <stdbool.h>
 
+# define fork 0
+# define eat 1
+# define sleep 2
+# define think 3
+# define die 4
+
 typedef struct s_philo	t_philo;
 
 typedef struct s_main{
@@ -33,19 +39,18 @@ typedef struct s_main{
 	int				i;
 	t_philo			**philos;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	stdout;
 }	t_main;
 
 typedef struct s_philo{
 	int				id;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
 	bool			is_dead;
 	t_main			*data;
 }	t_philo;
 
 int				parse(int argn, char *arguments[], t_main *data);
 int				initialise_data(t_main *data);
-int				ft_atoi(char *string);
+int				ft_atoi(const char *string);
 int				create_threads(t_main *data);
 void			*philosophise(t_philo *philo);
 int				get_time_ms(void);
@@ -54,7 +59,9 @@ void			msleep(int time_ms);
 t_philo			*create_philo_struct(t_main *data);
 void			free_philos(t_main *data);
 void			free_all(t_main *data);
-pthread_mutex_t	*get_left_fork(t_philo *philo);
-pthread_mutex_t	*get_right_fork(t_philo *philo);
+pthread_mutex_t	*left_fork(t_philo *philo);
+pthread_mutex_t	*right_fork(t_philo *philo);
+void			print(t_main *data, char *string);
+void			print_action(t_philo *philo, int action);
 
 #endif

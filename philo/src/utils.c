@@ -12,7 +12,10 @@
 
 #include "../dep/philo.h"
 
-int	ft_atoi(char *string)
+void	print_time_and_id(t_philo *philo);
+char	*get_action_string(int action);
+
+int	ft_atoi(const char *string)
 {
 	int	i;
 	int	string_as_int;
@@ -25,4 +28,39 @@ int	ft_atoi(char *string)
 		i++;
 	}
 	return (string_as_int);
+}
+
+void	print(t_main *data, char *string)
+{
+	pthread_mutex_lock(&data->stdout);
+	printf("%s\n", string);
+	pthread_mutex_unlock(&data->stdout);
+}
+
+void	print_action(t_philo *philo, int action)
+{
+	pthread_mutex_lock(&philo->data->stdout);
+	print_time_and_id(philo);
+	printf("%s", get_action_string(action));
+	pthread_mutex_unlock(&philo->data->stdout);
+}
+
+void	print_time_and_id(t_philo *philo)
+{
+	printf("%i %i ", get_elapsed_time(philo->data->start_time), philo->id);
+}
+
+char	*get_action_string(int action)
+{
+	if (action == fork)
+		return ("has taken a fork\n");
+	if (action == eat)
+		return ("is eating\n");
+	if (action == sleep)
+		return ("is sleeping\n");
+	if (action == think)
+		return ("is thinking\n");
+	if (action == die)
+		return ("died\n");
+	return (NULL);
 }

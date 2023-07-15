@@ -25,7 +25,7 @@ int	create_threads(t_main *data)
 			(void *)data->philos[data->i - 1]);
 		data->i++;
 	}
-	msleep(1000);
+	msleep(2000);
 	free_all(data);
 	return (0);
 }

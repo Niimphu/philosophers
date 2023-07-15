@@ -39,5 +39,6 @@ int	initialise_data(t_main *data)
 	i = 0;
 	while (i < data->philo_count)
 		pthread_mutex_init(&data->forks[i++], NULL);
+	pthread_mutex_init(&data->stdout, NULL);
 	return (0);
 }
