@@ -14,13 +14,14 @@
 
 void	eating(t_philo *philo);
 
-void	*philosophise(t_philo *philo)
+void	*philosophise(void *philo_p)
 {
-	if (!(philo->id % 2))
-		msleep(200);
-	pthread_mutex_lock(&philo->data->stdout);
-	printf("Philo %i here\n", philo->id);
-	pthread_mutex_unlock(&philo->data->stdout);
+	t_philo*philo = philo_p;
+//	if (!(philo->id % 2))
+//		msleep(200);
+//	pthread_mutex_lock(&philo->data->stdout);
+//	printf("Philo %i here\n", philo->id);
+//	pthread_mutex_unlock(&philo->data->stdout);
 	eating(philo);
 //	printf("%i says: 'nice' @ %i\n\n", philo->id, get_elapsed_time(data->start_time));
 	return (NULL);

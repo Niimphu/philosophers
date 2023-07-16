@@ -43,6 +43,7 @@ typedef struct s_main{
 }	t_main;
 
 typedef struct s_philo{
+	pthread_t		philo_thread;
 	int				id;
 	bool			is_dead;
 	t_main			*data;
@@ -52,7 +53,7 @@ int				parse(int argn, char *arguments[], t_main *data);
 int				initialise_data(t_main *data);
 int				ft_atoi(const char *string);
 int				create_threads(t_main *data);
-void			*philosophise(t_philo *philo);
+void	*philosophise(void *philo_p);
 int				get_time_ms(void);
 int				get_elapsed_time(int start_time);
 void			msleep(int time_ms);
