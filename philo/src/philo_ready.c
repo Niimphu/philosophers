@@ -16,10 +16,14 @@ t_philo	*create_philo_struct(t_main *data)
 {
 	t_philo	*philo;
 
-	philo = malloc(sizeof(t_philo *));
+	philo = malloc(sizeof(t_philo));
 	if (!philo)
 		return (NULL);
 	philo->id = data->i;
+	philo->die_time = data->die_time;
+	philo->eat_time = data->eat_time;
+	philo->sleep_time = data->sleep_time;
+	philo->max_meals = data->max_meals;
 	philo->data = data;
 	philo->is_dead = false;
 	return (philo);

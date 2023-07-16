@@ -37,7 +37,7 @@ typedef struct s_main{
 	int				max_meals;
 	int				start_time;
 	int				i;
-	t_philo			**philos;
+	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	stdout;
 }	t_main;
@@ -45,6 +45,10 @@ typedef struct s_main{
 typedef struct s_philo{
 	pthread_t		philo_thread;
 	int				id;
+	int				die_time;
+	int				eat_time;
+	int				sleep_time;
+	int				max_meals;
 	bool			is_dead;
 	t_main			*data;
 }	t_philo;

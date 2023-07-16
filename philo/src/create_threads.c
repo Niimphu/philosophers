@@ -19,13 +19,13 @@ int	create_threads(t_main *data)
 	while (data->i <= data->philo_count)
 	{
 		data->philos[data->i - 1] = create_philo_struct(data);
-		fprintf(stderr, "%d\n", data->philos[data->i - 1]->data->i);
-		fprintf(stderr, "%d\n", data->philos[data->i - 1]->id);
+//		fprintf(stderr, "%d\n", data->philos[data->i - 1]->data->i);
+//		fprintf(stderr, "%d\n", data->philos[data->i - 1]->id);
 		pthread_create(&data->philos[data->i - 1]->philo_thread, NULL, philosophise,
 			(void *)data->philos[data->i - 1]);
 		data->i++;
 	}
-	msleep(10000);
+	msleep(5000);
 	free_all(data);
 	return (0);
 }
