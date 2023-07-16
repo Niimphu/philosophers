@@ -37,7 +37,7 @@ typedef struct s_main{
 	int				max_meals;
 	int				start_time;
 	int				i;
-	t_philo			*philos;
+	t_philo			**philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	stdout;
 }	t_main;
@@ -49,7 +49,10 @@ typedef struct s_philo{
 	int				eat_time;
 	int				sleep_time;
 	int				max_meals;
+	int 			start_time;
 	bool			is_dead;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
 	t_main			*data;
 }	t_philo;
 
@@ -64,8 +67,6 @@ void			msleep(int time_ms);
 t_philo			*create_philo_struct(t_main *data);
 void			free_philos(t_main *data);
 void			free_all(t_main *data);
-pthread_mutex_t	*left_fork(t_philo *philo);
-pthread_mutex_t	*right_fork(t_philo *philo);
 void			print(t_main *data, char *string);
 void			print_action(t_philo *philo, int action);
 

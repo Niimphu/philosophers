@@ -47,7 +47,7 @@ void	print_action(t_philo *philo, int action)
 
 void	print_time_and_id(t_philo *philo)
 {
-	printf("%i %i ", get_elapsed_time(philo->data->start_time), philo->id);
+	printf("%i %i ", get_elapsed_time(philo->start_time), philo->id);
 }
 
 char	*get_action_string(int action)

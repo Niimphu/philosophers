@@ -1,6 +1,6 @@
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 LIBS = -lpthread
 
@@ -20,7 +20,7 @@ NAME = philo
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) -o $(NAME) $(LIBS)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBS)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@

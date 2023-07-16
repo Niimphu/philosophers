@@ -33,7 +33,7 @@ int	initialise_data(t_main *data)
 	data->philos = malloc(sizeof(t_philo *) * data->philo_count);
 	if (!data->philos)
 		return (1);
-	data->forks = malloc(sizeof(pthread_mutex_t *) * data->philo_count);
+	data->forks = malloc(sizeof(pthread_mutex_t) * data->philo_count);
 	if (!data->forks)
 		return (1);
 	i = 0;

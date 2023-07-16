@@ -12,6 +12,9 @@
 
 #include "../dep/philo.h"
 
+pthread_mutex_t	*get_left_fork(t_main *data, int philo_id);
+pthread_mutex_t	*get_right_fork(t_main *data, int philo_id);
+
 t_philo	*create_philo_struct(t_main *data)
 {
 	t_philo	*philo;
@@ -24,20 +27,23 @@ t_philo	*create_philo_struct(t_main *data)
 	philo->eat_time = data->eat_time;
 	philo->sleep_time = data->sleep_time;
 	philo->max_meals = data->max_meals;
-	philo->data = data;
+	philo->start_time = data->start_time;
 	philo->is_dead = false;
+	philo->left_fork = get_left_fork(data, philo->id);
+	philo->right_fork = get_right_fork(data, philo->id);
+	philo->data = data;
 	return (philo);
 }
 
-pthread_mutex_t	*left_fork(t_philo *philo)
+pthread_mutex_t	*get_left_fork(t_main *data, int philo_id)
 {
-	return (&philo->data->forks[philo->id - 1]);
+	return (&data->forks[philo_id - 1]);
 }
 
-pthread_mutex_t	*right_fork(t_philo *philo)
+pthread_mutex_t	*get_right_fork(t_main *data, int philo_id)
 {
-	if (philo->id == philo->data->philo_count)
-		return (&philo->data->forks[0]);
+	if (philo_id == data->philo_count)
+		return (&data->forks[0]);
 	else
-		return (&philo->data->forks[philo->id]);
+		return (&data->forks[philo_id]);
 }

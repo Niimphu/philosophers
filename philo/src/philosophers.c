@@ -18,22 +18,22 @@ void	*philosophise(void *philo_p)
 {
 	t_philo*philo = philo_p;
 	if (!(philo->id % 2))
-		msleep(200);
-//	pthread_mutex_lock(&philo->data->stdout);
+		msleep(10);
+	pthread_mutex_lock(&philo->data->stdout);
 	printf("Philo %i here\n", philo->id);
-//	pthread_mutex_unlock(&philo->data->stdout);
+	pthread_mutex_unlock(&philo->data->stdout);
 	eating(philo);
-//	printf("%i says: 'nice' @ %i\n\n", philo->id, get_elapsed_time(data->start_time));
 	return (NULL);
 }
 
 void	eating(t_philo *philo)
 {
-//	pthread_mutex_lock(left_fork(philo));
-//	pthread_mutex_lock(right_fork(philo));
-//	printf("there\n");
+	pthread_mutex_lock(philo->left_fork);
+	print_action(philo, fork);
+	pthread_mutex_lock(philo->right_fork);
+	print_action(philo, fork);
 	print_action(philo, eat);
 	msleep(philo->eat_time);
-//	pthread_mutex_unlock(left_fork(philo));
-//	pthread_mutex_unlock(right_fork(philo));
+	pthread_mutex_unlock(philo->left_fork);
+	pthread_mutex_unlock(philo->right_fork);
 }
