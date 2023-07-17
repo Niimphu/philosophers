@@ -27,6 +27,12 @@
 # define think 3
 # define die 4
 
+# define YELLOW "\033[33m"
+# define RED "\033[31m"
+# define GREEN "\033[32m"
+# define BLUE "\033[34m"
+# define END "\033[0m"
+
 typedef struct s_philo	t_philo;
 
 typedef struct s_main{
@@ -60,11 +66,14 @@ int				parse(int argn, char *arguments[], t_main *data);
 int				initialise_data(t_main *data);
 int				ft_atoi(const char *string);
 int				create_threads(t_main *data);
-void	*philosophise(void *philo_p);
+void			*philosophise(void *philo_p);
 int				get_time_ms(void);
 int				get_elapsed_time(int start_time);
-void			msleep(int time_ms);
+void			msleep(unsigned long long time_ms);
 t_philo			*create_philo_struct(t_main *data);
+void			eating(t_philo *philo);
+void			sleeping(t_philo *philo);
+void			thinking(t_philo *philo);
 void			free_philos(t_main *data);
 void			free_all(t_main *data);
 void			print(t_main *data, char *string);

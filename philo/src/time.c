@@ -17,7 +17,7 @@ int	get_time_ms(void)
 	struct timeval	time;
 
 	gettimeofday(&time, NULL);
-	return (time.tv_usec / 1000);
+	return (int)(time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
 int	get_elapsed_time(int start_time)
@@ -28,7 +28,14 @@ int	get_elapsed_time(int start_time)
 	return (time - start_time);
 }
 
-void	msleep(int time_ms)
+void	msleep(unsigned long long time_ms)
 {
-	usleep(time_ms * 1000);
+//	usleep(time_ms * 1000);
+	unsigned long long	start;
+	unsigned long long	elapsed;
+
+	start = get_time_ms();
+	elapsed = get_time_ms();
+	while (elapsed - start < time_ms)
+		elapsed = get_time_ms();
 }

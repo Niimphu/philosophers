@@ -14,6 +14,7 @@
 
 void	print_time_and_id(t_philo *philo);
 char	*get_action_string(int action);
+void	colour(int action);
 
 int	ft_atoi(const char *string)
 {
@@ -40,9 +41,23 @@ void	print(t_main *data, char *string)
 void	print_action(t_philo *philo, int action)
 {
 	pthread_mutex_lock(&philo->data->stdout);
+	colour(action);
 	print_time_and_id(philo);
 	printf("%s", get_action_string(action));
+	printf(END);
 	pthread_mutex_unlock(&philo->data->stdout);
+}
+
+void	colour(int action)
+{
+	if (action == fork)
+		printf(YELLOW);
+	else if (action == eat)
+		printf(BLUE);
+	else if (action == sleep)
+		printf(GREEN);
+	else if (action == die)
+		printf(RED);
 }
 
 void	print_time_and_id(t_philo *philo)
