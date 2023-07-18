@@ -13,10 +13,18 @@
 #include "../dep/philo.h"
 
 void	life_cycle(t_philo *philo);
+void	lets_go(t_main *data);
+void	not_yet(t_main *data);
 
 void	*philosophise(void *philo_p)
 {
-	t_philo*philo = philo_p;
+	t_philo	*philo;
+
+	philo = (t_philo *)philo_p;
+	if (philo->id == philo->data->philo_count)
+		lets_go(philo->data);
+	else
+		not_yet(philo->data);
 	if (!(philo->id % 2))
 		msleep(10);
 	life_cycle(philo);
@@ -31,4 +39,16 @@ void	life_cycle(t_philo *philo)
 		sleeping(philo);
 		thinking(philo);
 	}
+}
+
+void	lets_go(t_main *data)
+{
+	data->start_time = get_time_ms();
+	data->ready = true;
+}
+
+void	not_yet(t_main *data)
+{
+	while (data->ready == true)
+		usleep(10);
 }

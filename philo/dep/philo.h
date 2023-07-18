@@ -43,6 +43,7 @@ typedef struct s_main{
 	int				max_meals;
 	int				start_time;
 	int				i;
+	bool			ready;
 	t_philo			**philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	stdout;

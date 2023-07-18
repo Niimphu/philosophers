@@ -37,6 +37,7 @@ int	initialise_data(t_main *data)
 	if (!data->forks)
 		return (1);
 	i = 0;
+	data->ready = false;
 	while (i < data->philo_count)
 		pthread_mutex_init(&data->forks[i++], NULL);
 	pthread_mutex_init(&data->stdout, NULL);
