@@ -31,11 +31,10 @@ int	ft_atoi(const char *string)
 	return (string_as_int);
 }
 
-void	print(t_main *data, char *string)
+void	meals_done(t_main *data)
 {
 	pthread_mutex_lock(&data->stdout);
-	printf("%s\n", string);
-	pthread_mutex_unlock(&data->stdout);
+	printf("All philosphers have eaten %i meals.\n", data->max_meals);
 }
 
 void	print_action(t_philo *philo, int action)

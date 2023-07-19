@@ -23,6 +23,9 @@ void	eating(t_philo *philo)
 	pthread_mutex_unlock(&philo->last_munch_lock);
 	print_action(philo, eat);
 	msleep(philo->eat_time);
+	pthread_mutex_lock(&philo->meal_count_lock);
+	philo->times_munched++;
+	pthread_mutex_unlock(&philo->meal_count_lock);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 }

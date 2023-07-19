@@ -23,6 +23,7 @@ int	create_threads(t_main *data)
 			philosophise, (void *)data->philos[data->i - 1]);
 		data->i++;
 	}
+	pthread_create(&data->actual_waiterino, NULL, meal_checker, (void *)data);
 	pthread_create(&data->waiter_of_death, NULL, death_checker, (void *)data);
 	return (0);
 }

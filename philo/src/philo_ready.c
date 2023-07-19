@@ -23,16 +23,16 @@ t_philo	*create_philo_struct(t_main *data)
 	if (!philo)
 		return (NULL);
 	philo->id = data->i;
-	philo->die_time = data->die_time;
 	philo->eat_time = data->eat_time;
 	philo->sleep_time = data->sleep_time;
-	philo->max_meals = data->max_meals;
 	philo->start_time = data->start_time;
 	philo->last_munch = 0;
+	philo->times_munched = 0;
 	philo->is_dead = false;
 	philo->left_fork = get_left_fork(data, philo->id);
 	philo->right_fork = get_right_fork(data, philo->id);
 	pthread_mutex_init(&philo->last_munch_lock, NULL);
+	pthread_mutex_init(&philo->meal_count_lock, NULL);
 	philo->data = data;
 	return (philo);
 }

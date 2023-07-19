@@ -13,7 +13,6 @@
 #include "../dep/philo.h"
 
 void	life_cycle(t_philo *philo);
-void	not_yet(t_main *data);
 
 void	*philosophise(void *philo_p)
 {
