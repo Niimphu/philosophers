@@ -18,6 +18,9 @@ void	eating(t_philo *philo)
 	print_action(philo, fork);
 	pthread_mutex_lock(philo->right_fork);
 	print_action(philo, fork);
+	pthread_mutex_lock(&philo->last_munch_lock);
+	philo->last_munch = get_elapsed_time(philo->start_time);
+	pthread_mutex_unlock(&philo->last_munch_lock);
 	print_action(philo, eat);
 	msleep(philo->eat_time);
 	pthread_mutex_unlock(philo->left_fork);

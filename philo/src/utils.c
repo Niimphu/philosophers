@@ -45,7 +45,8 @@ void	print_action(t_philo *philo, int action)
 	print_time_and_id(philo);
 	printf("%s", get_action_string(action));
 	printf(END);
-	pthread_mutex_unlock(&philo->data->stdout);
+	if (action != die)
+		pthread_mutex_unlock(&philo->data->stdout);
 }
 
 void	colour(int action)

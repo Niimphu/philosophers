@@ -28,9 +28,11 @@ t_philo	*create_philo_struct(t_main *data)
 	philo->sleep_time = data->sleep_time;
 	philo->max_meals = data->max_meals;
 	philo->start_time = data->start_time;
+	philo->last_munch = 0;
 	philo->is_dead = false;
 	philo->left_fork = get_left_fork(data, philo->id);
 	philo->right_fork = get_right_fork(data, philo->id);
+	pthread_mutex_init(&philo->last_munch_lock, NULL);
 	philo->data = data;
 	return (philo);
 }

@@ -9,6 +9,7 @@ SRC = src/main.c \
 	src/create_threads.c \
 	src/philo_ready.c \
 	src/philosophers.c \
+	src/waiters.c \
 	src/life_actions.c \
 	src/time.c \
 	src/utils.c \

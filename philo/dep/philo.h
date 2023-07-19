@@ -36,6 +36,7 @@
 typedef struct s_philo	t_philo;
 
 typedef struct s_main{
+	pthread_t		waiter_of_death;
 	int				philo_count;
 	int				die_time;
 	int				eat_time;
@@ -44,9 +45,11 @@ typedef struct s_main{
 	int				start_time;
 	int				i;
 	bool			ready;
+	bool			all_philos_alive;
 	t_philo			**philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	stdout;
+	pthread_mutex_t	philos_alive_lock;
 }	t_main;
 
 typedef struct s_philo{
@@ -56,10 +59,12 @@ typedef struct s_philo{
 	int				eat_time;
 	int				sleep_time;
 	int				max_meals;
-	int 			start_time;
+	int				start_time;
+	int				last_munch;
 	bool			is_dead;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	last_munch_lock;
 	t_main			*data;
 }	t_philo;
 
@@ -75,6 +80,9 @@ t_philo			*create_philo_struct(t_main *data);
 void			eating(t_philo *philo);
 void			sleeping(t_philo *philo);
 void			thinking(t_philo *philo);
+void			*death_checker(void *void_data);
+void			*death(t_main *data, t_philo *dead_philo);
+void			lets_go(t_main *data);
 void			free_philos(t_main *data);
 void			free_all(t_main *data);
 void			print(t_main *data, char *string);
