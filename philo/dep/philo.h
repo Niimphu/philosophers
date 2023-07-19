@@ -50,6 +50,7 @@ typedef struct s_main{
 	t_philo			**philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	stdout;
+	pthread_mutex_t	ready_lock;
 	pthread_mutex_t	philos_alive_lock;
 }	t_main;
 

@@ -39,11 +39,20 @@ void	life_cycle(t_philo *philo)
 void	lets_go(t_main *data)
 {
 	data->start_time = get_time_ms();
+	pthread_mutex_lock(&data->ready_lock);
 	data->ready = true;
+	pthread_mutex_unlock(&data->ready_lock);
 }
 
 void	not_yet(t_main *data)
 {
-	while (data->ready == true)
-		usleep(2);
+	while (1)
+	{
+		pthread_mutex_lock(&data->ready_lock);
+		if (data->ready == true)
+			break ;
+		pthread_mutex_unlock(&data->ready_lock);
+		msleep(1);
+	}
+	pthread_mutex_unlock(&data->ready_lock);
 }
