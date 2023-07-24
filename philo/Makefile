@@ -13,6 +13,7 @@ SRC = src/main.c \
 	src/life_actions.c \
 	src/time.c \
 	src/utils.c \
+	src/variable_checkers.c \
 	src/free.c
 
 OBJ = $(SRC:.c=.o)

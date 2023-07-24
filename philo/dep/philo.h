@@ -85,6 +85,7 @@ void			thinking(t_philo *philo);
 void			*meal_checker(void *void_data);
 void			*death_checker(void *void_data);
 void			*death(t_main *data, t_philo *dead_philo);
+bool			are_philos_alive(t_main *data);
 void			not_yet(t_main *data);
 void			lets_go(t_main *data);
 void			free_philos(t_main *data);

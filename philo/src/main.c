@@ -31,12 +31,6 @@ int	main(int argn, char *arguments[])
 
 void	loop_until_death(t_main *data)
 {
-	while (1)
-	{
-		pthread_mutex_lock(&data->philos_alive_lock);
-		if (!data->all_philos_alive)
-			return ;
-		pthread_mutex_unlock(&data->philos_alive_lock);
+	while (are_philos_alive(data))
 		msleep(1);
-	}
 }
