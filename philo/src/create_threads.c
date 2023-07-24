@@ -15,7 +15,6 @@
 int	create_threads(t_main *data)
 {
 	data->i = 1;
-	data->start_time = get_time_ms();
 	while (data->i <= data->philo_count)
 	{
 		data->philos[data->i - 1] = create_philo_struct(data);
