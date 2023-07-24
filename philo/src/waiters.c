@@ -24,7 +24,7 @@ void	*meal_checker(void *void_data)
 	if (data->max_meals == -1)
 		return (NULL);
 	i = 0;
-	while (1)
+	while (are_philos_alive(data))
 	{
 		if (i >= data->philo_count)
 		{
@@ -46,6 +46,15 @@ void	*meal_checker(void *void_data)
 		pthread_mutex_unlock(&current_philo->meal_count_lock);
 		i++;
 	}
+	return (NULL);
+}
+
+void	meals_done(t_main *data)
+{
+	if (!are_philos_alive(data))
+		return ;
+	pthread_mutex_lock(&data->stdout);
+	printf("All philosophers have eaten %i meals.\n", data->max_meals);
 }
 
 void	*death_checker(void *void_data)
@@ -58,7 +67,7 @@ void	*death_checker(void *void_data)
 	lets_go(data);
 	pthread_mutex_init(&data->philos_alive_lock, NULL);
 	i = 0;
-	while (1)
+	while (are_philos_alive(data))
 	{
 		if (i >= data->philo_count)
 			i = 0;
@@ -70,6 +79,7 @@ void	*death_checker(void *void_data)
 		pthread_mutex_unlock(&current_philo->last_munch_lock);
 		i++;
 	}
+	return (NULL);
 }
 
 void	*death(t_main *data, t_philo *dead_philo)

@@ -31,14 +31,10 @@ int	ft_atoi(const char *string)
 	return (string_as_int);
 }
 
-void	meals_done(t_main *data)
-{
-	pthread_mutex_lock(&data->stdout);
-	printf("All philosphers have eaten %i meals.\n", data->max_meals);
-}
-
 void	print_action(t_philo *philo, int action)
 {
+	if (!are_philos_alive(philo->data))
+		return ;
 	pthread_mutex_lock(&philo->data->stdout);
 	colour(action);
 	print_time_and_id(philo);
