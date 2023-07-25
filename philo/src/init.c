@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 20:23:20 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/12 20:23:20 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/25 22:07:15 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,17 @@ int	initialise_data(t_main *data)
 	data->all_philos_alive = true;
 	while (i < data->philo_count)
 		pthread_mutex_init(&data->forks[i++], NULL);
-	pthread_mutex_init(&data->stdout, NULL);
-	pthread_mutex_init(&data->ready_lock, NULL);
+	data->stdout = malloc(sizeof(pthread_mutex_t));
+	if (!data->stdout)
+		return (-1);
+	pthread_mutex_init(data->stdout, NULL);
+	data->ready_lock = malloc(sizeof(pthread_mutex_t));
+	if (!data->ready_lock)
+		return (-1);
+	pthread_mutex_init(data->ready_lock, NULL);
+	data->philos_alive_lock = malloc(sizeof(pthread_mutex_t));
+	if (!data->philos_alive_lock)
+		return (-1);
+	pthread_mutex_init(data->philos_alive_lock, NULL);
 	return (0);
 }

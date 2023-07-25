@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:28:07 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/25 14:02:05 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/25 22:06:36 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	*meals_done(t_main *data)
 {
 	if (!are_philos_alive(data))
 		return (NULL);
-	pthread_mutex_lock(&data->philos_alive_lock);
+	pthread_mutex_lock(data->philos_alive_lock);
 	data->all_philos_alive = false;
-	pthread_mutex_unlock(&data->philos_alive_lock);
-	pthread_mutex_lock(&data->stdout);
+	pthread_mutex_unlock(data->philos_alive_lock);
+	pthread_mutex_lock(data->stdout);
 	printf("All philosophers have eaten %i meals.\n", data->max_meals);
 	return (NULL);
 }
@@ -64,7 +64,6 @@ void	*death_checker(void *void_data)
 
 	data = (t_main *)void_data;
 	lets_go(data);
-	pthread_mutex_init(&data->philos_alive_lock, NULL);
 	i = 0;
 	while (are_philos_alive(data))
 	{
@@ -83,9 +82,9 @@ void	*death_checker(void *void_data)
 
 void	*death(t_main *data, t_philo *dead_philo)
 {
-	pthread_mutex_lock(&data->philos_alive_lock);
+	pthread_mutex_lock(data->philos_alive_lock);
 	data->all_philos_alive = false;
-	pthread_mutex_unlock(&data->philos_alive_lock);
+	pthread_mutex_unlock(data->philos_alive_lock);
 	print_action(dead_philo, DIE);
 	return (NULL);
 }

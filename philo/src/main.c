@@ -24,7 +24,7 @@ int	main(int argn, char *arguments[])
 	data.start_time = get_time_ms();
 	create_threads(&data);
 	loop_until_death(&data);
-	pthread_mutex_unlock(&data.philos_alive_lock);
+	pthread_mutex_unlock(data.philos_alive_lock);
 	free_all(&data);
 	return (0);
 }

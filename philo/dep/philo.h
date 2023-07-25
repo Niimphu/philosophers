@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:47:29 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/25 14:03:29 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/25 22:03:28 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ typedef struct s_main{
 	bool			all_philos_alive;
 	t_philo			**philos;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	stdout;
-	pthread_mutex_t	ready_lock;
-	pthread_mutex_t	philos_alive_lock;
+	pthread_mutex_t	*stdout;
+	pthread_mutex_t	*ready_lock;
+	pthread_mutex_t	*philos_alive_lock;
 }	t_main;
 
 typedef struct s_philo{

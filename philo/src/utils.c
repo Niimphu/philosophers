@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 21:19:00 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/25 13:57:38 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/25 22:04:45 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ int	print_action(t_philo *philo, int action)
 {
 	if (!are_philos_alive(philo->data))
 		return (STOP);
-	pthread_mutex_lock(&philo->data->stdout);
+	pthread_mutex_lock(philo->data->stdout);
 	colour(action);
 	print_time_and_id(philo);
 	printf("%s", get_action_string(action));
 	printf(END);
 	if (action != DIE)
-		pthread_mutex_unlock(&philo->data->stdout);
+		pthread_mutex_unlock(philo->data->stdout);
 	return (OK);
 }
 
