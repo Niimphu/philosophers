@@ -6,13 +6,14 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:28:07 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/25 13:57:38 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/25 14:02:05 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../dep/philo.h"
 
-void			*meals_done(t_main *data);
+void	*meals_done(t_main *data);
+void	*death(t_main *data, t_philo *dead_philo);
 
 void	*meal_checker(void *void_data)
 {

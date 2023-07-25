@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:47:29 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/25 13:57:38 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/25 14:03:29 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # define SLEEP 2
 # define THINK 3
 # define DIE 4
+
+#define STOP -1
+#define OK 0
 
 # define YELLOW "\033[33m"
 # define RED "\033[31m"
@@ -70,26 +73,32 @@ typedef struct s_philo{
 	t_main			*data;
 }	t_philo;
 
-int				parse(int argn, char *arguments[], t_main *data);
-int				initialise_data(t_main *data);
-int				ft_atoi(const char *string);
-int				create_threads(t_main *data);
-void			*philosophise(void *philo_p);
-int				get_time_ms(void);
-int				get_elapsed_time(int start_time);
-void			msleep(unsigned long long time_ms);
-t_philo			*create_philo_struct(t_main *data);
-void			eating(t_philo *philo);
-void			sleeping(t_philo *philo);
-void			thinking(t_philo *philo);
-void			*meal_checker(void *void_data);
-void			*death_checker(void *void_data);
-void			*death(t_main *data, t_philo *dead_philo);
-bool			are_philos_alive(t_main *data);
-void			not_yet(t_main *data);
-void			lets_go(t_main *data);
-void			free_philos(t_main *data);
-void			free_all(t_main *data);
-void			print_action(t_philo *philo, int action);
+int		parse(int argn, char *arguments[], t_main *data);
+int		initialise_data(t_main *data);
+int		create_threads(t_main *data);
+t_philo	*create_philo_struct(t_main *data);
+
+void	not_yet(t_main *data);
+void	lets_go(t_main *data);
+
+void	*meal_checker(void *void_data);
+void	*death_checker(void *void_data);
+void	*philosophise(void *philo_p);
+
+void	eating(t_philo *philo);
+void	sleeping(t_philo *philo);
+void	thinking(t_philo *philo);
+void	print_action(t_philo *philo, int action);
+
+bool	are_philos_alive(t_main *data);
+
+int		get_time_ms(void);
+int		get_elapsed_time(int start_time);
+void	msleep(unsigned long long time_ms);
+
+void	free_philos(t_main *data);
+void	free_all(t_main *data);
+
+int		ft_atoi(const char *string);
 
 #endif
