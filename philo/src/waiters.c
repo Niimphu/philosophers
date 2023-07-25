@@ -36,9 +36,9 @@ void	*meal_checker(void *void_data)
 		pthread_mutex_lock(&data->philos[i]->meal_count_lock);
 		if (data->philos[i]->times_munched >= data->max_meals)
 			philos_done++;
+		pthread_mutex_unlock(&data->philos[i]->meal_count_lock);
 		if (philos_done == data->philo_count)
 			return (meals_done(data));
-		pthread_mutex_unlock(&data->philos[i]->meal_count_lock);
 		i++;
 	}
 	return (NULL);
