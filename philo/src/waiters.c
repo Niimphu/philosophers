@@ -48,11 +48,11 @@ void	*meals_done(t_main *data)
 {
 	if (!are_philos_alive(data))
 		return (NULL);
-	pthread_mutex_lock(&data->stdout);
-	printf("All philosophers have eaten %i meals.\n", data->max_meals);
 	pthread_mutex_lock(&data->philos_alive_lock);
 	data->all_philos_alive = false;
 	pthread_mutex_unlock(&data->philos_alive_lock);
+	pthread_mutex_lock(&data->stdout);
+	printf("All philosophers have eaten %i meals.\n", data->max_meals);
 	return (NULL);
 }
 
