@@ -31,6 +31,12 @@ int	main(int argn, char *arguments[])
 
 void	loop_until_death(t_main *data)
 {
-	while (are_philos_alive(data))
-		msleep(1);
+	int	i;
+
+	pthread_join(data->waiter_of_death, NULL);
+	pthread_join(data->actual_waiterino, NULL);
+	i = 0;
+	write(2, "waiters are done\n", 17);
+	while (i < data->philo_count)
+		pthread_join(data->philos[i++]->philo_thread, NULL);
 }

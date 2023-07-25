@@ -28,13 +28,13 @@ void	*philosophise(void *philo_p)
 
 void	life_cycle(t_philo *philo)
 {
-	while (!philo->is_dead)
+	while (!philo->is_dead && are_philos_alive(philo->data))
 	{
-		if (eating(philo) == STOP)
-			return ;
-		if (sleeping(philo) == STOP)
-			return ;
-		if (thinking(philo) == STOP)
-			return ;
+		if (eating(philo))
+			break ;
+		if (sleeping(philo))
+			break ;
+		if (thinking(philo))
+			break ;
 	}
 }
