@@ -83,9 +83,9 @@ void	*death_checker(void *void_data)
 
 void	*death(t_main *data, t_philo *dead_philo)
 {
-	print_action(dead_philo, DIE);
 	pthread_mutex_lock(&data->philos_alive_lock);
 	data->all_philos_alive = false;
 	pthread_mutex_unlock(&data->philos_alive_lock);
+	print_action(dead_philo, DIE);
 	return (NULL);
 }
