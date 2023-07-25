@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 21:19:00 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/06 21:19:00 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/25 13:57:38 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,19 @@ void	print_action(t_philo *philo, int action)
 	print_time_and_id(philo);
 	printf("%s", get_action_string(action));
 	printf(END);
-	if (action != die)
+	if (action != DIE)
 		pthread_mutex_unlock(&philo->data->stdout);
 }
 
 void	colour(int action)
 {
-	if (action == fork)
+	if (action == FORK)
 		printf(YELLOW);
-	else if (action == eat)
+	else if (action == EAT)
 		printf(BLUE);
-	else if (action == sleep)
+	else if (action == SLEEP)
 		printf(GREEN);
-	else if (action == die)
+	else if (action == DIE)
 		printf(RED);
 }
 
@@ -63,15 +63,15 @@ void	print_time_and_id(t_philo *philo)
 
 char	*get_action_string(int action)
 {
-	if (action == fork)
+	if (action == FORK)
 		return ("has taken a fork\n");
-	if (action == eat)
+	if (action == EAT)
 		return ("is eating\n");
-	if (action == sleep)
+	if (action == SLEEP)
 		return ("is sleeping\n");
-	if (action == think)
+	if (action == THINK)
 		return ("is thinking\n");
-	if (action == die)
+	if (action == DIE)
 		return ("died\n");
 	return (NULL);
 }

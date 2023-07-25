@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:47:29 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/10 20:40:37 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/25 13:57:38 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # include <pthread.h>
 # include <stdbool.h>
 
-# define fork 0
-# define eat 1
-# define sleep 2
-# define think 3
-# define die 4
+# define FORK 0
+# define EAT 1
+# define SLEEP 2
+# define THINK 3
+# define DIE 4
 
 # define YELLOW "\033[33m"
 # define RED "\033[31m"

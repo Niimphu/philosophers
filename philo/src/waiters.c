@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:28:07 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/19 19:28:28 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/25 13:57:38 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	*death_checker(void *void_data)
 
 void	*death(t_main *data, t_philo *dead_philo)
 {
-	print_action(dead_philo, die);
+	print_action(dead_philo, DIE);
 	pthread_mutex_lock(&data->philos_alive_lock);
 	data->all_philos_alive = false;
 	pthread_mutex_unlock(&data->philos_alive_lock);

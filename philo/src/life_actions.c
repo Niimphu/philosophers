@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 00:56:25 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/17 00:56:25 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/25 13:57:31 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	eating(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left_fork);
-	print_action(philo, fork);
+	print_action(philo, FORK);
 	pthread_mutex_lock(philo->right_fork);
-	print_action(philo, fork);
+	print_action(philo, FORK);
 	pthread_mutex_lock(&philo->last_munch_lock);
 	philo->last_munch = get_elapsed_time(philo->start_time);
 	pthread_mutex_unlock(&philo->last_munch_lock);
-	print_action(philo, eat);
+	print_action(philo, EAT);
 	msleep(philo->eat_time);
 	pthread_mutex_lock(&philo->meal_count_lock);
 	philo->times_munched++;
@@ -32,11 +32,11 @@ void	eating(t_philo *philo)
 
 void	sleeping(t_philo *philo)
 {
-	print_action(philo, sleep);
+	print_action(philo, SLEEP);
 	msleep(philo->sleep_time);
 }
 
 void	thinking(t_philo *philo)
 {
-	print_action(philo, think);
+	print_action(philo, THINK);
 }
