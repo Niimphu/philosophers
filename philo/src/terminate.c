@@ -12,6 +12,11 @@
 
 #include "../dep/philo.h"
 
+//void	terminate(t_main *data)
+//{
+//
+//}
+
 void	free_all(t_main *data)
 {
 	if (data->forks)
