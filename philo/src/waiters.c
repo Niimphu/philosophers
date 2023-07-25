@@ -12,6 +12,8 @@
 
 #include "../dep/philo.h"
 
+void			*meals_done(t_main *data);
+
 void	*meal_checker(void *void_data)
 {
 	t_main	*data;
@@ -36,25 +38,23 @@ void	*meal_checker(void *void_data)
 		if (current_philo->times_munched >= data->max_meals)
 			philos_done++;
 		if (philos_done == data->philo_count)
-		{
-			meals_done(data);
-			pthread_mutex_lock(&data->philos_alive_lock);
-			data->all_philos_alive = false;
-			pthread_mutex_unlock(&data->philos_alive_lock);
-			return (NULL);
-		}
+			return (meals_done(data));
 		pthread_mutex_unlock(&current_philo->meal_count_lock);
 		i++;
 	}
 	return (NULL);
 }
 
-void	meals_done(t_main *data)
+void	*meals_done(t_main *data)
 {
 	if (!are_philos_alive(data))
-		return ;
+		return (NULL);
 	pthread_mutex_lock(&data->stdout);
 	printf("All philosophers have eaten %i meals.\n", data->max_meals);
+	pthread_mutex_lock(&data->philos_alive_lock);
+	data->all_philos_alive = false;
+	pthread_mutex_unlock(&data->philos_alive_lock);
+	return (NULL);
 }
 
 void	*death_checker(void *void_data)

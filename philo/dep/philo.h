@@ -90,7 +90,6 @@ void			not_yet(t_main *data);
 void			lets_go(t_main *data);
 void			free_philos(t_main *data);
 void			free_all(t_main *data);
-void			meals_done(t_main *data);
 void			print_action(t_philo *philo, int action);
 
 #endif
