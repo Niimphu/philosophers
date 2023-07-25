@@ -21,7 +21,7 @@ void	*philosophise(void *philo_p)
 	philo = (t_philo *)philo_p;
 	not_yet(philo->data);
 	if (!(philo->id % 2))
-		msleep(10);
+		msleep(philo->eat_time / 2);
 	life_cycle(philo);
 	return (NULL);
 }
