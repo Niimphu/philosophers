@@ -30,8 +30,11 @@ void	life_cycle(t_philo *philo)
 {
 	while (!philo->is_dead)
 	{
-		eating(philo);
-		sleeping(philo);
-		thinking(philo);
+		if (eating(philo) == STOP)
+			return ;
+		if (sleeping(philo) == STOP)
+			return ;
+		if (thinking(philo) == STOP)
+			return ;
 	}
 }

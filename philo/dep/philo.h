@@ -85,10 +85,10 @@ void	*meal_checker(void *void_data);
 void	*death_checker(void *void_data);
 void	*philosophise(void *philo_p);
 
-void	eating(t_philo *philo);
-void	sleeping(t_philo *philo);
-void	thinking(t_philo *philo);
-void	print_action(t_philo *philo, int action);
+int		eating(t_philo *philo);
+int		sleeping(t_philo *philo);
+int		thinking(t_philo *philo);
+int		print_action(t_philo *philo, int action);
 
 bool	are_philos_alive(t_main *data);
 

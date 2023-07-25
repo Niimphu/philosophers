@@ -12,7 +12,7 @@
 
 #include "../dep/philo.h"
 
-void	eating(t_philo *philo)
+int	eating(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left_fork);
 	print_action(philo, FORK);
@@ -28,15 +28,21 @@ void	eating(t_philo *philo)
 	pthread_mutex_unlock(&philo->meal_count_lock);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
+	if (!are_philos_alive(philo->data))
+		return (STOP);
+	return (OK);
 }
 
-void	sleeping(t_philo *philo)
+int	sleeping(t_philo *philo)
 {
 	print_action(philo, SLEEP);
 	msleep(philo->sleep_time);
+	if (!are_philos_alive(philo->data))
+		return (STOP);
+	return (OK);
 }
 
-void	thinking(t_philo *philo)
+int	thinking(t_philo *philo)
 {
-	print_action(philo, THINK);
+	return (print_action(philo, THINK));
 }

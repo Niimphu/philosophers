@@ -31,10 +31,10 @@ int	ft_atoi(const char *string)
 	return (string_as_int);
 }
 
-void	print_action(t_philo *philo, int action)
+int	print_action(t_philo *philo, int action)
 {
 	if (!are_philos_alive(philo->data))
-		return ;
+		return (STOP);
 	pthread_mutex_lock(&philo->data->stdout);
 	colour(action);
 	print_time_and_id(philo);
@@ -42,6 +42,7 @@ void	print_action(t_philo *philo, int action)
 	printf(END);
 	if (action != DIE)
 		pthread_mutex_unlock(&philo->data->stdout);
+	return (OK);
 }
 
 void	colour(int action)
