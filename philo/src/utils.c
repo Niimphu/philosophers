@@ -36,12 +36,17 @@ int	print_action(t_philo *philo, int action)
 	if (!are_philos_alive(philo->data))
 		return (STOP);
 	pthread_mutex_lock(philo->data->stdout);
+	if (action == DIE)
+	{
+		pthread_mutex_lock(philo->data->philos_alive_lock);
+		philo->data->all_philos_alive = false;
+		pthread_mutex_unlock(philo->data->philos_alive_lock);
+	}
 	colour(action);
 	print_time_and_id(philo);
 	printf("%s", get_action_string(action));
 	printf(END);
-	if (action != DIE)
-		pthread_mutex_unlock(philo->data->stdout);
+	pthread_mutex_unlock(philo->data->stdout);
 	return (OK);
 }
 

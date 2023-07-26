@@ -53,6 +53,7 @@ void	*meals_done(t_main *data)
 	pthread_mutex_unlock(data->philos_alive_lock);
 	pthread_mutex_lock(data->stdout);
 	printf("All philosophers have eaten %i meals.\n", data->max_meals);
+	pthread_mutex_unlock(data->stdout);
 	return (NULL);
 }
 

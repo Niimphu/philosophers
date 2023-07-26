@@ -27,7 +27,9 @@ int	eating(t_philo *philo)
 	pthread_mutex_unlock(&philo->meal_count_lock);
 	msleep(philo->eat_time);
 	pthread_mutex_unlock(philo->left_fork);
+	printf("%i put away fork\n", philo->id);
 	pthread_mutex_unlock(philo->right_fork);
+	printf("%i put away fork\n", philo->id);
 	if (!are_philos_alive(philo->data))
 		return (STOP);
 	return (OK);
