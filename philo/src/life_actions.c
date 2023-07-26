@@ -22,10 +22,10 @@ int	eating(t_philo *philo)
 	philo->last_munch = get_elapsed_time(philo->start_time);
 	pthread_mutex_unlock(&philo->last_munch_lock);
 	print_action(philo, EAT);
-	msleep(philo->eat_time);
 	pthread_mutex_lock(&philo->meal_count_lock);
 	philo->times_munched++;
 	pthread_mutex_unlock(&philo->meal_count_lock);
+	msleep(philo->eat_time);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 	if (!are_philos_alive(philo->data))
