@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:28:07 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/25 22:06:36 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/26 20:04:17 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	*meals_done(t_main *data)
 	pthread_mutex_lock(data->philos_alive_lock);
 	data->all_philos_alive = false;
 	pthread_mutex_unlock(data->philos_alive_lock);
-	pthread_mutex_lock(data->stdout);
+	pthread_mutex_lock(data->print_lock);
 	printf("All philosophers have eaten %i meals.\n", data->max_meals);
-	pthread_mutex_unlock(data->stdout);
+	pthread_mutex_unlock(data->print_lock);
 	return (NULL);
 }
 
