@@ -13,6 +13,7 @@
 #include "../dep/philo.h"
 
 void	life_cycle(t_philo *philo);
+void	*single_philo(t_philo *philo);
 
 void	*philosophise(void *philo_p)
 {
@@ -21,7 +22,9 @@ void	*philosophise(void *philo_p)
 	philo = (t_philo *)philo_p;
 	not_yet(philo->data);
 	if (!(philo->id % 2))
-		msleep(philo->eat_time / 2);
+		msleep(philo->eat_time - 1);
+	if (philo->data->philo_count == 1)
+		return (single_philo(philo));
 	life_cycle(philo);
 	return (NULL);
 }
@@ -37,4 +40,12 @@ void	life_cycle(t_philo *philo)
 		if (thinking(philo))
 			break ;
 	}
+//	printf("%i stop\n", philo->id);
+}
+
+void	*single_philo(t_philo *philo)
+{
+	print_action(philo, FORK);
+	msleep(philo->data->die_time);
+	return (NULL);
 }
