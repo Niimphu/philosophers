@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosphers.c                                      :+:      :+:    :+:   */
+/*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 16:24:28 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/10 20:40:27 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/27 19:44:51 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	life_cycle(t_philo *philo)
 		if (thinking(philo))
 			break ;
 	}
-//	printf("%i stop\n", philo->id);
 }
 
 void	*single_philo(t_philo *philo)

@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:28:07 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/26 20:04:17 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/27 20:37:09 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	*meals_done(t_main *data);
 void	*death(t_main *data, t_philo *dead_philo);
+int		is_philo_done(t_main *data, int i);
 
 void	*meal_checker(void *void_data)
 {
@@ -29,21 +30,26 @@ void	*meal_checker(void *void_data)
 	philos_done = 0;
 	while (are_philos_alive(data))
 	{
-		if (i >= data->philo_count)
+		pthread_mutex_lock(&data->philos[i]->meal_count_lock);
+		philos_done += is_philo_done(data, i);
+		pthread_mutex_unlock(&data->philos[i]->meal_count_lock);
+		if (philos_done == data->philo_count)
+			return (meals_done(data));
+		if (++i >= data->philo_count)
 		{
 			philos_done = 0;
 			i = 0;
 			usleep(1000);
 		}
-		pthread_mutex_lock(&data->philos[i]->meal_count_lock);
-		if (get_times_munched(data->philos[i]) >= data->max_meals)
-			philos_done++;
-		pthread_mutex_unlock(&data->philos[i]->meal_count_lock);
-		if (philos_done == data->philo_count)
-			return (meals_done(data));
-		i++;
 	}
 	return (NULL);
+}
+
+int	is_philo_done(t_main *data, int i)
+{
+	if (get_times_munched(data->philos[i]) >= data->max_meals)
+		return (1);
+	return (0);
 }
 
 void	*meals_done(t_main *data)

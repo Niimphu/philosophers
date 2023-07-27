@@ -6,11 +6,13 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 20:23:20 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/26 20:04:17 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/27 19:57:05 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../dep/philo.h"
+
+int	allocate_mutex_memory(t_main *data);
 
 int	parse(int argn, char *arguments[], t_main *data)
 {
@@ -30,28 +32,35 @@ int	initialise_data(t_main *data)
 {
 	int	i;
 
-	data->philos = malloc(sizeof(t_philo *) * data->philo_count);
-	if (!data->philos)
-		return (1);
-	data->forks = malloc(sizeof(pthread_mutex_t) * data->philo_count);
-	if (!data->forks)
-		return (1);
+	if (allocate_mutex_memory(data) == -1)
+		return (-1);
 	i = 0;
 	data->ready = false;
 	data->all_philos_alive = true;
 	while (i < data->philo_count)
 		pthread_mutex_init(&data->forks[i++], NULL);
+	pthread_mutex_init(data->print_lock, NULL);
+	pthread_mutex_init(data->ready_lock, NULL);
+	pthread_mutex_init(data->philos_alive_lock, NULL);
+	return (0);
+}
+
+int	allocate_mutex_memory(t_main *data)
+{
+	data->philos = malloc(sizeof(t_philo *) * data->philo_count);
+	if (!data->philos)
+		return (-1);
+	data->forks = malloc(sizeof(pthread_mutex_t) * data->philo_count);
+	if (!data->forks)
+		return (-1);
 	data->print_lock = malloc(sizeof(pthread_mutex_t));
 	if (!data->print_lock)
 		return (-1);
-	pthread_mutex_init(data->print_lock, NULL);
 	data->ready_lock = malloc(sizeof(pthread_mutex_t));
 	if (!data->ready_lock)
 		return (-1);
-	pthread_mutex_init(data->ready_lock, NULL);
 	data->philos_alive_lock = malloc(sizeof(pthread_mutex_t));
 	if (!data->philos_alive_lock)
 		return (-1);
-	pthread_mutex_init(data->philos_alive_lock, NULL);
 	return (0);
 }
