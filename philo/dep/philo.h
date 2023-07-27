@@ -80,6 +80,7 @@ t_philo	*create_philo_struct(t_main *data);
 
 void	not_yet(t_main *data);
 void	lets_go(t_main *data);
+int		get_times_munched(t_philo *philo);
 
 void	*meal_checker(void *void_data);
 void	*death_checker(void *void_data);

@@ -48,3 +48,13 @@ bool	ready_check(t_main *data)
 	pthread_mutex_unlock(data->ready_lock);
 	return (we_ready);
 }
+
+int	get_times_munched(t_philo *philo)
+{
+	int	meals_eaten;
+
+	pthread_mutex_lock(&philo->last_munch_lock);
+	meals_eaten = philo->times_munched;
+	pthread_mutex_unlock(&philo->last_munch_lock);
+	return (meals_eaten);
+}
