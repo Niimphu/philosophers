@@ -35,6 +35,10 @@ void	msleep(unsigned long long time_ms)
 
 	start = get_time_ms();
 	elapsed = get_time_ms();
+	usleep(time_ms * 980);
 	while (elapsed - start < time_ms)
+	{
+		usleep(500);
 		elapsed = get_time_ms();
+	}
 }

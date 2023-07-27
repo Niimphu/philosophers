@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 21:19:00 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/26 20:04:17 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/27 19:39:59 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,12 @@ int	ft_atoi(const char *string)
 
 int	print_action(t_philo *philo, int action)
 {
-	if (!are_philos_alive(philo->data))
-		return (STOP);
 	pthread_mutex_lock(philo->data->print_lock);
+	if (!are_philos_alive(philo->data))
+	{
+		pthread_mutex_unlock(philo->data->print_lock);
+		return (STOP);
+	}
 	if (action == DIE)
 	{
 		pthread_mutex_lock(philo->data->philos_alive_lock);

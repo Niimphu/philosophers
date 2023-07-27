@@ -26,12 +26,14 @@ void	*meal_checker(void *void_data)
 	if (data->max_meals == -1)
 		return (NULL);
 	i = 0;
+	philos_done = 0;
 	while (are_philos_alive(data))
 	{
 		if (i >= data->philo_count)
 		{
 			philos_done = 0;
 			i = 0;
+			usleep(1000);
 		}
 		pthread_mutex_lock(&data->philos[i]->meal_count_lock);
 		if (get_times_munched(data->philos[i]) >= data->max_meals)
