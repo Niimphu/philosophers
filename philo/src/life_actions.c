@@ -6,13 +6,11 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 00:56:25 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/28 17:17:50 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/28 19:18:55 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../dep/philo.h"
-
-int	put_down_forks(t_philo *philo);
 
 int	eating(t_philo *philo)
 {
@@ -21,11 +19,11 @@ int	eating(t_philo *philo)
 	pthread_mutex_lock(philo->left_fork);
 	print_action(philo, FORK);
 	if (!continue_program(philo->data))
-		return (STOP + put_down_forks(philo));
+		return (STOP);
 	pthread_mutex_lock(philo->right_fork);
 	print_action(philo, FORK);
 	if (!continue_program(philo->data))
-		return (STOP + put_down_forks(philo));
+		return (STOP);
 	pthread_mutex_lock(&philo->last_munch_lock);
 	philo->last_munch = get_elapsed_time(philo->start_time);
 	pthread_mutex_unlock(&philo->last_munch_lock);
@@ -55,11 +53,4 @@ int	sleeping(t_philo *philo)
 int	thinking(t_philo *philo)
 {
 	return (print_action(philo, THINK));
-}
-
-int	put_down_forks(t_philo *philo)
-{
-	pthread_mutex_unlock(philo->left_fork);
-	pthread_mutex_unlock(philo->right_fork);
-	return (0);
 }

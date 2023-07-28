@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:47:29 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/28 17:17:50 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/28 21:26:57 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_main{
 	int				max_meals;
 	int				start_time;
 	int				i;
+	int				write_check;
 	bool			ready;
 	bool			all_philos_alive;
 	t_philo			**philos;

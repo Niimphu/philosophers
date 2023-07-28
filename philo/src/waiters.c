@@ -6,14 +6,14 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:28:07 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/28 17:45:40 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/28 22:21:40 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../dep/philo.h"
 
 void	*meals_done(t_main *data);
-void	*death(t_main *data, t_philo *dead_philo);
+void	*death(t_philo *dead_philo);
 int		is_philo_done(t_main *data, int i);
 
 void	*meal_checker(void *void_data)
@@ -70,30 +70,27 @@ void	*death_checker(void *void_data)
 
 	data = (t_main *)void_data;
 	lets_go(data);
-	i = 0;
 	while (continue_program(data))
 	{
-		if (i >= data->philo_count)
+		i = 0;
+		while (i < data->philo_count)
 		{
-			i = 0;
-			usleep(500);
-		}
-		current_philo = data->philos[i];
-		pthread_mutex_lock(&current_philo->last_munch_lock);
-		if (get_elapsed_time(data->start_time) - current_philo->last_munch
-			> data->die_time)
-			return (death(data, data->philos[i]));
-		pthread_mutex_unlock(&current_philo->last_munch_lock);
+			current_philo = data->philos[i];
+			pthread_mutex_lock(&current_philo->last_munch_lock);
+			if (get_elapsed_time(data->start_time) - current_philo->last_munch
+				> data->die_time)
+				return (death(data->philos[i]));
+			pthread_mutex_unlock(&current_philo->last_munch_lock);
 		i++;
+		}
+		usleep(20);
 	}
 	return (NULL);
 }
 
-void	*death(t_main *data, t_philo *dead_philo)
+void	*death(t_philo *dead_philo)
 {
 	print_action(dead_philo, DIE);
-	pthread_mutex_lock(data->philos_alive_lock);
-	data->all_philos_alive = false;
-	pthread_mutex_unlock(data->philos_alive_lock);
+	pthread_mutex_unlock(&dead_philo->last_munch_lock);
 	return (NULL);
 }

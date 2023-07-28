@@ -6,13 +6,14 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:26:15 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/27 19:44:35 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/28 22:18:54 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../dep/philo.h"
 
 void	loop_until_death(t_main *data);
+
 
 int	main(int argn, char *arguments[])
 {
@@ -24,7 +25,6 @@ int	main(int argn, char *arguments[])
 	data.start_time = get_time_ms();
 	create_threads(&data);
 	loop_until_death(&data);
-	pthread_mutex_unlock(data.philos_alive_lock);
 	free_all(&data);
 	return (0);
 }

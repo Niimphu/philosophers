@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 20:23:20 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/27 19:57:05 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/28 21:27:22 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	parse(int argn, char *arguments[], t_main *data)
 	data->eat_time = ft_atoi(arguments[3]);
 	data->sleep_time = ft_atoi(arguments[4]);
 	data->max_meals = -1;
+	data->write_check = 0;
 	if (arguments[5])
 		data->max_meals = ft_atoi(arguments[5]);
 	return (0);

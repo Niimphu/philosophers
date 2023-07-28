@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 16:24:28 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/28 17:17:50 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/28 22:00:47 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*philosophise(void *philo_p)
 	philo = (t_philo *)philo_p;
 	not_yet(philo->data);
 	if (!(philo->id % 2))
-		msleep(philo->eat_time - 1);
+		msleep(philo->eat_time / 2);
 	if (philo->data->philo_count == 1)
 		return (single_philo(philo));
 	life_cycle(philo);
