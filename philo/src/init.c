@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 20:23:20 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/28 22:38:47 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/28 22:43:51 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	invalid_arguments(char *arguments[]);
 int	parse(int argn, char *arguments[], t_main *data)
 {
 	if (argn < 5 || argn > 6)
-		return (ARG_NO);
+		return (STOP);
 	if (invalid_arguments(arguments))
-		return (BAD_CHARACTER);
+		return (STOP);
 	data->philo_count = ft_atoi(arguments[1]);
 	data->die_time = ft_atoi(arguments[2]);
 	data->eat_time = ft_atoi(arguments[3]);
@@ -83,7 +83,7 @@ int	invalid_arguments(char *arguments[])
 		while (arguments[i][j])
 		{
 			if (arguments[i][j] < '0' || arguments[i][j] > '9')
-				return (BAD_CHARACTER);
+				return (STOP);
 			j++;
 		}
 		i++;
