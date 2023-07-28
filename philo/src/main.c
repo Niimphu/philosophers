@@ -6,14 +6,13 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:26:15 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/28 22:44:05 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/28 22:45:04 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../dep/philo.h"
 
 void	loop_until_death(t_main *data);
-
 
 int	main(int argn, char *arguments[])
 {
