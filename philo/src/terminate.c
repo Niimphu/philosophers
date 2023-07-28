@@ -12,37 +12,7 @@
 
 #include "../dep/philo.h"
 
-void	destroy_data_mutexes(t_main *data, pthread_mutex_t *forks);
 void	kill_mutex(pthread_mutex_t *mutex);
-void	destroy_philo_mutexes(t_philo *philo);
-
-void	free_all(t_main *data)
-{
-	if (data->forks)
-	{
-		destroy_data_mutexes(data, data->forks);
-		free(data->forks);
-		data->forks = NULL;
-	}
-	free_philos(data);
-}
-
-void	free_philos(t_main *data)
-{
-	int	i;
-
-	if (!data->philos)
-		return ;
-	i = 0;
-	while (i < data->philo_count)
-	{
-		destroy_philo_mutexes(data->philos[i]);
-		free(data->philos[i]);
-		data->philos[i++] = NULL;
-	}
-	free(data->philos);
-	data->philos = NULL;
-}
 
 void	destroy_data_mutexes(t_main *data, pthread_mutex_t *forks)
 {
@@ -69,4 +39,15 @@ void	kill_mutex(pthread_mutex_t *mutex)
 {
 	pthread_mutex_unlock(mutex);
 	pthread_mutex_destroy(mutex);
+}
+
+void	unlock_forks(t_main *data)
+{
+	int	i;
+
+	msleep(100);
+	i = 0;
+	while (i < data->philo_count)
+		pthread_mutex_unlock(&data->forks[i++]);
+	pthread_mutex_unlock(data->print_lock);
 }

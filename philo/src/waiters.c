@@ -39,7 +39,7 @@ void	*meal_checker(void *void_data)
 		{
 			philos_done = 0;
 			i = 0;
-			usleep(1000);
+			usleep(1500);
 		}
 	}
 	return (NULL);

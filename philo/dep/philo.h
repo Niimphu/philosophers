@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:47:29 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/26 20:04:17 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/28 17:02:35 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ typedef struct s_philo{
 	int				start_time;
 	int				last_munch;
 	int				times_munched;
-	bool			is_dead;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	last_munch_lock;
@@ -99,6 +98,10 @@ void	msleep(unsigned long long time_ms);
 
 void	free_philos(t_main *data);
 void	free_all(t_main *data);
+
+void	unlock_forks(t_main *data);
+void	destroy_philo_mutexes(t_philo *philo);
+void	destroy_data_mutexes(t_main *data, pthread_mutex_t *forks);
 
 int		ft_atoi(const char *string);
 

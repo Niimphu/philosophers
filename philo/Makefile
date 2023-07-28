@@ -14,7 +14,8 @@ SRC = src/main.c \
 	src/time.c \
 	src/utils.c \
 	src/checkers.c \
-	src/terminate.c
+	src/terminate.c \
+	src/free.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:46:40 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/14 15:46:40 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/28 17:02:38 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_philo	*create_philo_struct(t_main *data)
 	philo->start_time = data->start_time;
 	philo->last_munch = 0;
 	philo->times_munched = 0;
-	philo->is_dead = false;
 	philo->left_fork = get_left_fork(data, philo->id);
 	philo->right_fork = get_right_fork(data, philo->id);
 	pthread_mutex_init(&philo->last_munch_lock, NULL);
