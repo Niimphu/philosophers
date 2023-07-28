@@ -6,18 +6,21 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 20:23:20 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/28 21:27:22 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/28 22:38:47 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../dep/philo.h"
 
 int	allocate_mutex_memory(t_main *data);
+int	invalid_arguments(char *arguments[]);
 
 int	parse(int argn, char *arguments[], t_main *data)
 {
 	if (argn < 5 || argn > 6)
-		return (1);
+		return (ARG_NO);
+	if (invalid_arguments(arguments))
+		return (BAD_CHARACTER);
 	data->philo_count = ft_atoi(arguments[1]);
 	data->die_time = ft_atoi(arguments[2]);
 	data->eat_time = ft_atoi(arguments[3]);
@@ -64,4 +67,26 @@ int	allocate_mutex_memory(t_main *data)
 	if (!data->philos_alive_lock)
 		return (-1);
 	return (0);
+}
+
+int	invalid_arguments(char *arguments[])
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (arguments[i])
+	{
+		j = 0;
+		if (arguments[i][j] == '+')
+			j++;
+		while (arguments[i][j])
+		{
+			if (arguments[i][j] < '0' || arguments[i][j] > '9')
+				return (BAD_CHARACTER);
+			j++;
+		}
+		i++;
+	}
+	return (OK);
 }

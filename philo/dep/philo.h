@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:47:29 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/28 21:26:57 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/28 22:32:10 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 
 # define STOP (-1)
 # define OK 0
+# define ARG_NO 1
+# define BAD_CHARACTER 2
 
 # define YELLOW "\033[33m"
 # define RED "\033[31m"
