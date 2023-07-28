@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:28:07 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/28 17:17:50 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/28 17:45:40 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ void	*death_checker(void *void_data)
 	while (continue_program(data))
 	{
 		if (i >= data->philo_count)
+		{
 			i = 0;
+			usleep(500);
+		}
 		current_philo = data->philos[i];
 		pthread_mutex_lock(&current_philo->last_munch_lock);
 		if (get_elapsed_time(data->start_time) - current_philo->last_munch
