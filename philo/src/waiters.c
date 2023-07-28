@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:28:07 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/27 20:37:09 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/28 17:17:50 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	*meal_checker(void *void_data)
 		return (NULL);
 	i = 0;
 	philos_done = 0;
-	while (are_philos_alive(data))
+	while (continue_program(data))
 	{
 		pthread_mutex_lock(&data->philos[i]->meal_count_lock);
 		philos_done += is_philo_done(data, i);
@@ -54,7 +54,7 @@ int	is_philo_done(t_main *data, int i)
 
 void	*meals_done(t_main *data)
 {
-	if (!are_philos_alive(data))
+	if (!continue_program(data))
 		return (NULL);
 	pthread_mutex_lock(data->philos_alive_lock);
 	data->all_philos_alive = false;
@@ -71,7 +71,7 @@ void	*death_checker(void *void_data)
 	data = (t_main *)void_data;
 	lets_go(data);
 	i = 0;
-	while (are_philos_alive(data))
+	while (continue_program(data))
 	{
 		if (i >= data->philo_count)
 			i = 0;

@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 16:24:28 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/28 17:03:24 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/28 17:17:50 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*philosophise(void *philo_p)
 
 void	life_cycle(t_philo *philo)
 {
-	while (are_philos_alive(philo->data))
+	while (continue_program(philo->data))
 	{
 		if (eating(philo))
 			break ;

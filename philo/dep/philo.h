@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:47:29 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/28 17:02:35 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/28 17:17:50 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int		sleeping(t_philo *philo);
 int		thinking(t_philo *philo);
 int		print_action(t_philo *philo, int action);
 
-bool	are_philos_alive(t_main *data);
+bool	continue_program(t_main *data);
 
 int		get_time_ms(void);
 int		get_elapsed_time(int start_time);

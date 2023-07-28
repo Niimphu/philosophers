@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   variable_checkers.c                                :+:      :+:    :+:   */
+/*   checkers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 18:37:08 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/24 18:37:08 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/28 17:17:50 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	ready_check(t_main *data);
 
-bool	are_philos_alive(t_main *data)
+bool	continue_program(t_main *data)
 {
 	bool	philos_are_alive;
 
