@@ -27,7 +27,7 @@
 # define THINK 3
 # define DIE 4
 
-# define STOP (-1)
+# define STOP -1
 # define OK 0
 # define YELLOW "\033[33m"
 # define RED "\033[31m"

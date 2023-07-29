@@ -81,7 +81,7 @@ void	*death_checker(void *void_data)
 				> data->die_time)
 				return (death(data->philos[i]));
 			pthread_mutex_unlock(&current_philo->last_munch_lock);
-		i++;
+			i++;
 		}
 		usleep(20);
 	}
