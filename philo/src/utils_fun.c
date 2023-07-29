@@ -6,11 +6,10 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 21:19:00 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/29 16:38:41 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/29 16:49:47 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../dep/philo.h"
 #include "../dep/philo_fun.h"
 
 void	print_time_and_id(t_philo *philo);

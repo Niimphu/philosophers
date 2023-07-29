@@ -6,11 +6,10 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 15:01:39 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/29 16:47:52 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/29 16:49:41 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../dep/philo.h"
 #include "../dep/philo_fun.h"
 
 void	print_food(int time)
