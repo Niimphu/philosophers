@@ -41,20 +41,24 @@ CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
 LIBS = -lpthread
 
-SRC = src/main.c \
-	src/init.c \
-	src/create_threads.c \
-	src/philo_ready.c \
-	src/philosophers.c \
-	src/waiters.c \
-	src/life_actions.c \
-	src/time.c \
-	src/utils.c \
-	src/checkers.c \
-	src/terminate.c \
-	src/free.c
+SRC_DIR = src
 
-OBJ = $(SRC:.c=.o)
+SRC = main.c \
+	init.c \
+	create_threads.c \
+	philo_ready.c \
+	philosophers.c \
+	waiters.c \
+	life_actions.c \
+	time.c \
+	utils.c \
+	checkers.c \
+	terminate.c \
+	free.c
+
+OBJ_DIR = build
+
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 NAME = philo
 
@@ -65,7 +69,8 @@ $(NAME): $(OBJ)
 	@echo "$$SPAGHETTI"
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBS)
 
-%.o: %.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
