@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 18:37:08 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/28 17:17:50 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/29 16:47:21 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,16 @@ bool	continue_program(t_main *data)
 
 void	lets_go(t_main *data)
 {
-	data->start_time = get_time_ms();
 	pthread_mutex_lock(data->ready_lock);
 	data->ready = true;
+	data->start_time = get_time_ms();
 	pthread_mutex_unlock(data->ready_lock);
 }
 
 void	not_yet(t_main *data)
 {
 	while (!ready_check(data))
-		msleep(1);
-	pthread_mutex_unlock(data->ready_lock);
+		;
 }
 
 bool	ready_check(t_main *data)
