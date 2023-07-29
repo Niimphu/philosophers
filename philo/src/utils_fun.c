@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_fun.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 21:19:00 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/28 22:19:37 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/29 16:38:41 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ int	print_action(t_philo *philo, int action)
 	print_time_and_id(philo);
 	printf("%s", get_action_string(action));
 	if (action == EAT)
-//		print_food(get_elapsed_time(philo->start_time));
-		printf(" food\n");
+		print_food(get_elapsed_time(philo->start_time) + philo->id);
 	printf(END);
 	pthread_mutex_unlock(philo->data->print_lock);
 	return (OK);

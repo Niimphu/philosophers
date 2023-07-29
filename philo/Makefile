@@ -58,11 +58,11 @@ SRC = main.c \
 	terminate.c \
 	free.c
 
-FUN_SRC := $(filter-out utils.c, $(SRC))
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+
+FUN_SRC := $(filter-out utils.c, $(SRC)) utils_fun.c spaghetti.c
 
 FUN_OBJ := $(addprefix $(OBJ_DIR)/, $(FUN_SRC:.c=.o))
-
-OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 NAME = philo
 
@@ -86,6 +86,8 @@ fclean: clean
 re: fclean all
 
 fun: $(FUN_OBJ)
-	@$(MAKE) all
+	clear
+	@echo "$$SPAGHETTI"
+	@$(CC) $(CFLAGS) $(FUN_OBJ) -o $(NAME) $(LIBS)
 
 .PHONY: all clean fclean re

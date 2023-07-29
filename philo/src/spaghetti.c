@@ -6,7 +6,7 @@
 /*   By: yiwong <yiwong@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 15:01:39 by yiwong            #+#    #+#             */
-/*   Updated: 2023/07/29 15:01:39 by yiwong           ###   ########.fr       */
+/*   Updated: 2023/07/29 16:39:33 by yiwong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	print_food(int time)
 	else if (time == 5)
 		printf("ramen\n");
 	else if (time == 6)
-		printf("borgar\n");
+		printf("borgir\n");
 	else if (time == 7)
-		printf("some cake\n");
+		printf("fries\n");
 	else if (time == 8)
 		printf("pudding\n");
 	else if (time == 9)
-		printf("a donut\n");
+		printf("pizza\n");
 }
