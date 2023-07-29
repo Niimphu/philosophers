@@ -90,4 +90,6 @@ fun: $(FUN_OBJ)
 	@echo "$$SPAGHETTI"
 	@$(CC) $(CFLAGS) $(FUN_OBJ) -o $(NAME) $(LIBS)
 
+refun: fclean fun
+
 .PHONY: all clean fclean re
