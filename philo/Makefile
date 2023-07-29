@@ -43,6 +43,8 @@ LIBS = -lpthread
 
 SRC_DIR = src
 
+OBJ_DIR = build
+
 SRC = main.c \
 	init.c \
 	create_threads.c \
@@ -56,7 +58,9 @@ SRC = main.c \
 	terminate.c \
 	free.c
 
-OBJ_DIR = build
+FUN_SRC := $(filter-out utils.c, $(SRC))
+
+FUN_OBJ := $(addprefix $(OBJ_DIR)/, $(FUN_SRC:.c=.o))
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
@@ -74,11 +78,14 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ)
+	@rm -f build/*.o
 
 fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
+
+fun: $(FUN_OBJ)
+	@$(MAKE) all
 
 .PHONY: all clean fclean re
