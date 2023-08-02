@@ -26,6 +26,13 @@ int	eating(t_philo *philo)
 		return (STOP);
 	pthread_mutex_lock(&philo->last_munch_lock);
 	philo->last_munch = get_elapsed_time(philo->start_time);
+	if (get_elapsed_time(philo->start_time) - philo->last_munch
+		> philo->data->die_time)
+	{
+		print_action(philo, DIE);
+		pthread_mutex_unlock(&philo->last_munch_lock);
+		return (STOP);
+	}
 	pthread_mutex_unlock(&philo->last_munch_lock);
 	print_action(philo, EAT);
 	pthread_mutex_lock(&philo->meal_count_lock);
